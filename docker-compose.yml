@@ -1,0 +1,15 @@
+services:
+  nextjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+    env_file:
+      - .env.development
+    volumes:
+      - .:/app # Монтируем локальные файлы внутрь контейнера
+      #- /app/node_modules # Исключаем node_modules для предотвращения конфликтов
+    command: npm run dev # Запускаем приложение в режиме dev
